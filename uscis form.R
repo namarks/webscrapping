@@ -30,7 +30,8 @@ status_parsed <- status_raw %>%
   spread(variable, value) %>% 
   mutate(timestamp = Sys.time())
 
-final <- bind_rows(final,status_parsed)
+final <- bind_rows(final,status_parsed) %>% 
+  mutate(position = ifelse(position=='',0,position))
 final
 
 final_long <- final %>% 
